@@ -1,6 +1,6 @@
 <template>
-  <div class="datamanage-container">
-    data
+  <div class="container">
+    用户管理
   </div>
 </template>
 <script>
@@ -8,4 +8,5 @@
     name: 'datamanage'
   }
 </script>
-<style lang='scss' scope></style>
+<style lang='scss' scope>
+</style>
