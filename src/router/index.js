@@ -14,7 +14,7 @@ export const routermap = [
   {
     path: '/',
     name: '首页',
-    redirect: '/userList',
+    redirect: '/manage',
     hidden: true
   },
   {

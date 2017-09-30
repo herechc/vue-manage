@@ -10,9 +10,6 @@ import 'nprogress/nprogress.css'
 
 Vue.use(ElementUI)
 
-
-
-
 Vue.config.productionTip = false
 
 router.beforeEach((to, from, next) => {

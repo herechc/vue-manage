@@ -18,3 +18,17 @@
     border-radius:20px
   }
 }
+//定位上下左右居中
+@mixin ctp($width,$height) {
+  position: absolute;
+	top: 50%;
+  left: 50%;
+  margin-top: -$height/2;
+  margin-left: -$width/2;
+}
+
+//宽高
+@mixin wh($width, $height){
+	width: $width;
+	height: $height;
+}

@@ -1,0 +1,65 @@
+//分页
+.pagination{
+  margin: 20px auto;
+  text-align: center;
+  &>div{
+    display: inline-block;
+  }
+  .first,.end{
+    min-width: 32px;
+    height: 32px;
+    padding: 0 12px;
+    margin: 0 5px;
+    line-height: 1.4;
+    text-align: center;
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    cursor: pointer;
+    color: #555;
+    &:hover{
+      color: #43adfe;
+    }
+    &.is-disabled{
+      color: #e4e4e4;
+      background: none;
+    }
+  }
+  .el-pagination{
+    padding: 0;
+    vertical-align: top;
+    button{
+      min-width: 32px;
+      height: 32px;
+      margin: 0 5px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
+    li,li.active+li {
+      min-width: 32px;
+      height: 32px;
+      line-height: 32px;
+      font-size: 14px;
+      margin: 0 5px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
+    li.active{
+      border-color: #20a0ff;
+    }
+  }
+}
+
+// table内嵌form
+.table-expand-custom {
+  font-size: 0;
+  label {
+    width: 90px;
+    color: #99a9bf;
+  }
+  .el-form-item {
+    margin-right: 0;
+    margin-bottom: 0;
+    width: 50%;
+  }
+}
