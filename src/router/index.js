@@ -12,9 +12,14 @@ export const routermap = [
     hidden: true
   },
   {
+    path: '/signup',
+    component: _import('login/signup'),
+    hidden: true
+  },
+  {
     path: '/',
     name: '首页',
-    redirect: '/manage',
+    redirect: '/manage/userList',
     hidden: true
   },
   {
@@ -23,11 +28,11 @@ export const routermap = [
     component: Index,
     icon: 'el-icon-document',
     children: [
-      { path: '/userList', component: _import('manage/index'), name: '用户列表' },
-      { path: '/shopList', component: _import('manage/shopList'), name: '商家列表' },
-      { path: '/foodList', component: _import('manage/foodList'), name: '食品列表' },
-      { path: '/orderList', component: _import('manage/orderList'), name: '订单列表' },
-      { path: '/adminList', component: _import('manage/adminList'), name: '管理员列表' }
+      { path: '/manage/userList', component: _import('manage/index'), name: '用户列表' },
+      { path: '/manage/shopList', component: _import('manage/shopList'), name: '商家列表' },
+      { path: '/manage/foodList', component: _import('manage/foodList'), name: '食品列表' },
+      { path: '/manage/orderList', component: _import('manage/orderList'), name: '订单列表' },
+      { path: '/manage/adminList', component: _import('manage/adminList'), name: '管理员列表' }
     ]
   },
   {
@@ -36,8 +41,8 @@ export const routermap = [
     component: Index,
     icon: 'el-icon-plus',
     children: [
-      { path: '/addshop', component: _import('add/index'), name: '添加商铺' },
-      { path: '/addGoods', component: _import('add/addGoods'), name: '添加商品' }
+      { path: '/add/addshop', component: _import('add/index'), name: '添加商铺' },
+      { path: '/add/addGoods', component: _import('add/addGoods'), name: '添加商品' }
     ]
   }
 ]

@@ -6,17 +6,17 @@
           <p>buyone后台管理系统</p>
         </div>
         <el-form :model="listQuery" ref="loginForm">
-          <el-form-item prop="name">
+          <el-form-item prop="username">
             <el-input placeholder="用户名" v-model="listQuery.name"></el-input>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input type="password" placeholder="密码" v-model="listQuery.password"></el-input>
+            <el-input type="password" v-model="listQuery.password" placeholder="密码"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" class="submit_btn" @click="login">登陆</el-button>
+            <el-button type="primary" class="submit_btn" @click="signup">注册</el-button>
           </el-form-item>
         </el-form>
-        <el-button type="text" @click="goSignupPage">注册</el-button>
+        
       </section>
     </transition>
   </div>
@@ -27,10 +27,12 @@
     name: 'login',
     data() {
       return {
+        // 参数
         listQuery: {
           name: '',
           password: ''
         },
+        // 显示控制
         showLogin: false
       }
     },
@@ -38,16 +40,22 @@
       this.showLogin = true
     },
     methods: {
-      goSignupPage() {
-        this.$router.push({path: '/signup'})
-      },
-      login() {
-        this.$store.dispatch('Login', this.listQuery).then(_ => {
-          console.log('登录')
-          this.$router.push({path: '/'})
-        }).catch(error => {
-          console.log(error)
-          this.$message.error(error.message)
+      signup() {
+        this.$api.signup(this.listQuery).then(res => {
+          const data = res.data
+          if (data.code === 0) {
+            this.$message({
+              message: '注册成功',
+              type: 'success',
+              onClose: _ => {
+                this.$router.push('/login')
+              }
+            })
+          } else {
+            this.$message.error(data.message)
+          }
+        }).catch(err => {
+          this.$message.error(err.message)
         })
       }
     }
@@ -59,6 +67,7 @@
   .login_page {
     background-color: #324057;
   }
+  
   .manage_tip {
     position: absolute;
     width: 100%;

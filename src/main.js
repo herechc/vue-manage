@@ -3,23 +3,34 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import api from 'api'
 
+Vue.prototype.$api = api
 Vue.use(ElementUI)
-
 Vue.config.productionTip = false
 
+const whiteList = ['/login', '/404', '/signup']
 router.beforeEach((to, from, next) => {
   NProgress.start()
-  if (to.path === '/') {
-    console.log(3)
-    next({path: 'login'})
-    NProgress.done()
+  if (store.getters.token) {
+    if (to.path === '/login') {
+      next({path: '/'})
+      NProgress.done()
+    } else {
+      next()
+    }
   } else {
-    next()
+    if (whiteList.indexOf(to.path) !== -1) {
+      next()
+    } else {
+      next('/login')
+      NProgress.done()
+    }
   }
 })
 
@@ -31,6 +42,7 @@ router.afterEach(() => {
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })
