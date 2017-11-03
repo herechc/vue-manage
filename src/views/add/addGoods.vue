@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <el-row :gutter="20">
-      <el-col :span="12" :offset="6">
+      <el-col :span="6" :offset="8">
         <el-form label-width="120px">
           <el-form-item label="食品种类：">
             <el-input></el-input>

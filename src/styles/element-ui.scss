@@ -50,6 +50,16 @@
   }
 }
 
+//table
+
+.customTable{
+  //extend
+  // .el-form-item__content{
+  //   display:flex;
+  //   justify-content:center;
+  //   flex-wrap:wrap
+  // }
+}
 // table内嵌form
 .table-expand-custom {
   font-size: 0;
@@ -62,4 +72,60 @@
     margin-bottom: 0;
     width: 50%;
   }
+}
+
+// dialog footer
+.el-dialog__footer{
+  text-align:center
+}
+
+//dialog
+.customDialog{
+  //header
+  .el-dialog__header {
+    border-bottom: 1px solid #ddd;
+    padding: 12px 20px;
+    .el-dialog__headerbtn{
+      .el-dialog__close{
+        font-size:12;
+        color:#333
+      } 
+    }
+  }
+  .el-textarea{
+    width:220px
+  }
+  //body
+  .el-dialog__body {
+      padding: 0;
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+  .content{
+    height:450px;
+    overflow-y: auto
+  }
+  //footer
+  .el-dialog__footer {
+    text-align: center;
+    border-top: 1px solid #ddd;
+  }
+  //大小 small
+  &.small{
+    .el-dialog{
+      width:420px;
+    }
+  }
+  //默认input大小
+  .el-input{
+    input{
+      width:220px
+    }
+  }
+}
+
+//el-upload img大小
+.avatar{
+  width:148px;
+  height:148px;
 }

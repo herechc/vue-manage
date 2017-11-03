@@ -6,7 +6,8 @@ import { Message } from 'element-ui'
 export const Login = ({ commit }, userInfo) => {
   return new Promise((resolve, reject) => {
     $api.login(userInfo).then(res => {
-      if (res.data.code === 0) {
+      console.log(res)
+      if (res.data.code === 1) {
         const data = res.data
         cookie.set(key.TOKEN, data.token)
         commit(types.SET_TOKEN, data.token)

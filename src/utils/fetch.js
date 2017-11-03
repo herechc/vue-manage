@@ -7,8 +7,13 @@ const service = axios.create({
 })
 
 service.interceptors.request.use(config => {
+  // console.log(config)
   if (store.getters.token) {
-    config.params.access_token = store.getters.token
+    if (config.params) {
+      config.params.access_token = store.getters.token
+    } else {
+      config.params = { 'access_token': store.getters.token }
+    }
   }
   return config
 }, error => {
@@ -17,6 +22,7 @@ service.interceptors.request.use(config => {
 })
 
 service.interceptors.response.use(res => {
+  // console.log(res)
   if (res.status === 401) {
     store.dispatch('LogOut').then(_ => {
       location.reload()
@@ -25,7 +31,19 @@ service.interceptors.response.use(res => {
     return res
   }
 }, error => {
-  return Promise.reject(error)
+  if (error.response.status / 1 === 401) {
+    // console.log(window.vm)
+    window.vm.$alert('由于您长时间没有操作，为保证账户安全，需要重新登录', '重新登录', {
+      confirmButtonText: '确定',
+      close() {
+        store.dispatch('LogOut').then(_ => {
+          location.reload()
+        })
+      }
+    })
+  } else {
+    return Promise.reject(error)
+  }
 })
 
 export default service

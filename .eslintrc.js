@@ -27,5 +27,11 @@ module.exports = {
     "space-before-function-paren": [0, "always"],
     //强制驼峰法命名
     "camelcase": 0,
+    //var可以定义多个
+    "one-var": 0,
+    "import/first": 0,
+    "semi":0,
+    "import/no-duplicates": 0,
+    "no-unused-vars": 0
   }
 }
