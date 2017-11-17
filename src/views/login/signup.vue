@@ -43,6 +43,7 @@
       signup() {
         this.$api.signup(this.listQuery).then(res => {
           const data = res.data
+          console.log(res)
           if (data.code === 1) {
             this.$message({
               message: '注册成功',
