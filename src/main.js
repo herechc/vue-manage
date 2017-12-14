@@ -9,6 +9,8 @@ import 'element-ui/lib/theme-default/index.css'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import api from 'api'
+import * as filters from './filter'
+import './icons'
 
 Vue.prototype.$api = api
 Vue.use(ElementUI)
@@ -32,6 +34,10 @@ router.beforeEach((to, from, next) => {
       NProgress.done()
     }
   }
+})
+
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
 })
 
 router.afterEach(() => {

@@ -1,15 +1,15 @@
 <template>
   <div>
     <div v-for="item in routes" :key="item.key">
-      <el-menu-item :index="item.children[0].path" v-if="!item.hidden && item.noDropdown && item.children.length > 0">
+      <el-menu-item :index="item.children[0].path" v-if="!item.hidden && item.children.length === 1">
         <template slot="title">
-          <i :class="item.icon"></i>
+          <svg-icon :icon-class="item.icon" slot="icon"/>
           <span>{{item.name}}</span>
         </template>
       </el-menu-item>
-      <el-submenu :index="item.name" v-if="!item.noDropDown && !item.hidden">
+      <el-submenu :index="item.name" v-else-if="!item.hidden">
         <template slot="title">
-          <i :class="item.icon"></i>
+          <svg-icon :icon-class="item.icon" slot="icon"/>
           <span>{{item.name}}</span>
         </template>
         <div v-for="child in item.children" :key="child.key" v-if="!child.hidden" >

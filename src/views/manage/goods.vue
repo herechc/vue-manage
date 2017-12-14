@@ -124,9 +124,13 @@
     methods: {
       handleAddGoods() {
         this.$api.addGoods(this.listQuery).then(res => {
-          // console.log(res)
+          console.log(res)
           this.getlist()
-          this.$message.success(res.data.message)
+          if (res.data.code) {
+            this.$message.success(res.data.message)
+          } else {
+            this.$message.error(res.data.message)
+          }
           this.addGoodsDialogVisible = false
         }).catch(err => {
           // console.log(err)
@@ -140,7 +144,11 @@
           type: 'warning'
         }).then(_ => {
           this.$api.delGoods(id).then(res => {
-            this.$message.success(res.data.message)
+            if (res.data.code) {
+              this.$message.success(res.data.message)
+            } else {
+              this.$message.error(res.data.message)
+            }
             this.getlist()
           }).catch(err => {
             this.$message.error(err.message)

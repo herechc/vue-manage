@@ -26,12 +26,9 @@ export const routermap = [
     path: '/manage',
     name: '数据管理',
     component: Index,
-    icon: 'el-icon-document',
+    icon: 'data',
     children: [
       { path: '/manage/userList', component: _import('manage/index'), name: '用户列表' },
-      { path: '/manage/shopList', component: _import('manage/shopList'), name: '商家列表' },
-      { path: '/manage/foodList', component: _import('manage/foodList'), name: '食品列表' },
-      { path: '/manage/orderList', component: _import('manage/orderList'), name: '订单列表' },
       { path: '/manage/adminList', component: _import('manage/adminList'), name: '管理员列表' },
       { path: '/manage/goods', component: _import('manage/goods'), name: '商品' },
       { path: '/manage/banner', component: _import('manage/banner'), name: '焦点图' },
@@ -39,14 +36,30 @@ export const routermap = [
     ]
   },
   {
-    path: '/add',
-    name: '添加数据',
+    path: '',
+    name: '图表',
     component: Index,
-    icon: 'el-icon-plus',
+    icon: 'charts',
     children: [
-      { path: '/add/addshop', component: _import('add/index'), name: '添加商铺' },
-      { path: '/add/addGoods', component: _import('add/addGoods'), name: '添加商品' },
-      { path: '/add/addBanner', component: _import('add/addBanner'), name: '添加焦点图' }
+      { path: '/charts/index', component: _import('charts/index'), name: '图表' }
+    ]
+  },
+  {
+    path: '',
+    name: '文本编辑',
+    component: Index,
+    icon: 'markdown',
+    children: [
+      { path: '/markdown', component: _import('markdown/index'), name: 'markdown' }
+    ]
+  },
+  {
+    path: '',
+    name: '说明',
+    component: Index,
+    icon: 'explain',
+    children: [
+      { path: '/explain', component: _import('explain/index'), name: 'explain' }
     ]
   }
 ]

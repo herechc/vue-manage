@@ -7,7 +7,7 @@ const service = axios.create({
 })
 
 service.interceptors.request.use(config => {
-  // console.log(config)
+  console.log(config.params)
   if (store.getters.token) {
     if (config.params) {
       config.params.access_token = store.getters.token

@@ -22,6 +22,22 @@ export default {
     return fetch.post('/v1/admin/signup', qs.stringify(data))
   },
   /**
+   * 接口名称：管理员列表
+   * 参数：
+   *      access_token(token)
+  */
+  getAdminList: data => {
+    return fetch.get('/v1/admin/list', { params: data })
+  },
+  /**
+   * 接口名称：用户列表
+   * 参数：
+   *      access_token(token)
+  */
+  getUserList: data => {
+    return fetch.get('/v1/user/list', { params: data })
+  },
+  /**
    * 接口名称：添加焦点图
    * 参数：
    *      access_token(token)

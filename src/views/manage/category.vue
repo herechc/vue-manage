@@ -46,7 +46,11 @@
       handleAddCate() {
         this.$api.addCategory(this.listQuery).then(res => {
           this.getlist()
-          this.$message.success(res.data.message)
+          if (res.data.code) {
+            this.$message.success(res.data.message)
+          } else {
+            this.$message.error(res.data.message)
+          }
           this.addCateDialogVisible = false
         }).catch(err => {
           this.$message.error(err.message)
@@ -59,7 +63,11 @@
           type: 'warning'
         }).then(_ => {
           this.$api.delCategory(id).then(res => {
-            this.$message.success(res.data.message)
+            if (res.data.code) {
+              this.$message.success(res.data.message)
+            } else {
+              this.$message.error(res.data.message)
+            }
             this.getlist()
           }).catch(err => {
             this.$message.error(err.message)

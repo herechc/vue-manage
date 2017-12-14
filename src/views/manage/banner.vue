@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="header-btn">
-      <el-button type="primary" @click="addBanDialogVisible = true">新建</el-button>
+      <el-button type="primary" @click="handleCreate">新建</el-button>
     </div>
     <div class="banner-list">
       <div class="list" v-for="item in imglist" :key="item.id">
@@ -10,8 +10,8 @@
       </div>
     </div>
     <el-dialog title="添加焦点图" :visible.sync="addBanDialogVisible" class="customDialog small">
-      <el-form label-width="120px" :model="formData">
-        <el-form-item label="上传焦点图：">
+      <el-form label-width="120px" :model="formData" ref='form'>
+        <el-form-item label="上传焦点图：" >
           <el-upload class="avatar-uploader" 
             list-type="picture-card" 
             :action="baseUrl + '/addimg/banner'" 
@@ -60,6 +60,11 @@ export default {
         // console.log(res.data)
       })
     },
+    handleCreate() {
+      // 新建
+      this.addBanDialogVisible = true
+      this.formData.image_path = ''
+    },
     handleDel(id) {
       this.$confirm('是否删除焦点图', '删除', {
         confirmButtonText: '确定',
@@ -70,6 +75,8 @@ export default {
           if (res.data.code === 1) {
             this.$message.success(res.data.message)
             this.getlist()
+          } else {
+            this.$message.error(res.data.message)
           }
         }).catch(err => {
           this.$message.error(err.message)
@@ -106,6 +113,8 @@ export default {
         if (data.code === 1) {
           this.$message.success(data.message)
           this.getlist()
+        } else {
+          this.$message.error(data.message)
         }
         this.addBanDialogVisible = false
       }).catch(err => {
