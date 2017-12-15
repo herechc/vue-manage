@@ -46,6 +46,7 @@
       handleAddCate() {
         this.$api.addCategory(this.listQuery).then(res => {
           this.getlist()
+          console.log(res.data.code)
           if (res.data.code) {
             this.$message.success(res.data.message)
           } else {

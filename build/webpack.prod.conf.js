@@ -9,7 +9,11 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
-var env = config.build.env
+var env = config.build[process.env.env_config + 'Env']
+
+function resolveApp(relativePath) {
+  return path.resolve(relativePath);
+}
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -53,10 +57,18 @@ var webpackConfig = merge(baseWebpackConfig, {
       filename: config.build.index,
       template: 'index.html',
       inject: true,
+      favicon: resolveApp('favicon.ico'),
       minify: {
         removeComments: true,
         collapseWhitespace: true,
-        removeAttributeQuotes: true
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
         // more options:
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
