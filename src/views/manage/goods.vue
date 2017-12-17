@@ -47,9 +47,10 @@
           <el-form-item label="图片：">
             <el-upload class="avatar-uploader" 
                 list-type="picture-card" 
-                :action="baseUrl + '/addimg/goods'" 
+                :action="baseUrl + 'addimg/goods'" 
                 :show-file-list="false" 
-                :on-success="handleAvatarSuccess" 
+                :on-success="handleAvatarSuccess"
+                :with-credentials="true"
                 :before-upload="beforeAvatraUpload">
                 <img v-if="listQuery.image_path" :src="baseUrlImg + listQuery.image_path" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -70,8 +71,9 @@
           <el-form-item label="详情图：">
             <el-upload
               class="avatar-uploader"
-              :action="baseUrl + '/addimg/goods'"
+              :action="baseUrl + 'addimg/goods'"
               :on-success="handlePictrue"
+              :with-credentials="true"
               :on-remove="handlePictrue"
               >
               <el-button size="small" type="primary">点击上传</el-button>
@@ -192,10 +194,11 @@ export default {
     },
     handleAvatarSuccess(res, file) {
       // 上传成功
+      console.log(res)
       if (res.status === 1) {
         this.listQuery.image_path = res.image_path;
       } else {
-        this.$message.error('上传图片失败!');
+        this.$message.error(res.message);
       }
       // console.log(res)
     },

@@ -2,12 +2,13 @@ import axios from 'axios'
 import store from '@/store'
 
 const service = axios.create({
-  baseURL: '/api', // api的base_url
-  timeout: 5000 // 请求超时
+  baseURL: process.env.BASE_API, // api的base_url->nginx->baseURL: '/api'
+  timeout: 5000, // 请求超时
+  withCredentials: true// 对应服务器响应头设置Access-Control-Allow-Credentials:true，表示跨域时，允许cookie添加到请求中。
 })
 
 service.interceptors.request.use(config => {
-  console.log(config.params)
+  // console.log(config.params)
   if (store.getters.token) {
     if (config.params) {
       config.params.access_token = store.getters.token

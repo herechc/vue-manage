@@ -14,10 +14,11 @@
         <el-form-item label="上传焦点图：" >
           <el-upload class="avatar-uploader" 
             list-type="picture-card" 
-            :action="baseUrl + '/addimg/banner'" 
+            :action="baseUrl + 'addimg/banner'" 
             :show-file-list="false" 
             :on-success="handleAvatarSuccess" 
-            :before-upload="beforeAvatraUpload">
+            :before-upload="beforeAvatraUpload"
+            :with-credentials="true">
             <img v-if="formData.image_path" :src="baseUrlImg + formData.image_path" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
@@ -86,11 +87,12 @@ export default {
       })
     },
     handleAvatarSuccess(res, file) {
+      console.log(res)
       // 上传成功
       if (res.status === 1) {
         this.formData.image_path = res.image_path
       } else {
-        this.$message.error('上传图片失败!')
+        this.$message.error(res.message)
       }
       // console.log(res)
     },
@@ -109,6 +111,7 @@ export default {
     handleUPload() {
       // 上传图片
       this.$api.addBanner(this.formData).then(res => {
+        console.log(res)
         let data = res.data
         if (data.code === 1) {
           this.$message.success(data.message)

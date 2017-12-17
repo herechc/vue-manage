@@ -1,7 +1,7 @@
 export function adminRole(type) {
   const status = {
-    '0': '管理员',
-    '1': '超级管理员'
+    '8': '管理员',
+    '10': '超级管理员'
   }
   return status[type]
 }
