@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <ripple>
+      <a href="javasript:;" class="test">模拟水波涟漪效果</a>
+    </ripple>
     <el-table :data="tablelist" fit>
       <el-table-column prop="name" label="姓名"></el-table-column>
       <el-table-column  label="注册时间">
@@ -22,6 +25,7 @@
   </div>
 </template>
 <script>
+  import ripple from 'components/ripple/ripple.vue'
   export default {
     name: 'adminlist',
     data() {
@@ -33,6 +37,9 @@
         },
         total: 0
       }
+    },
+    components: {
+      ripple
     },
     mounted() {
       this.getList()
@@ -57,4 +64,14 @@
   }
   
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.test{
+  width:400px;
+  height:80px;
+  display:block;
+  background:green;
+  text-align:center;
+  line-height:80px;
+  color:#fff;
+}
+</style>
